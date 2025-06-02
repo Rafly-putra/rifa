@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Hai Rifa Cantik</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+      color: #fff;
+    }
+
+    .container {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 40px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      max-width: 700px;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+    }
+
+    .active {
+      opacity: 1;
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 48px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 18px;
+      margin-bottom: 20px;
+    }
+
+    button {
+      padding: 10px 25px;
+      font-size: 18px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      margin: 10px;
+      transition: 0.3s;
+    }
+
+    .yes {
+      background-color: #4caf50;
+      color: white;
+    }
+
+    .no {
+      background-color: #f44336;
+      color: white;
+    }
+
+    .next {
+      background-color: #ffffff;
+      color: #333;
+    }
+
+    .heart {
+      font-size: 50px;
+      animation: pulse 1s infinite;
+      color: #ff4081;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    #penutup {
+      font-size: 20px;
+      font-style: italic;
+    }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      h1 {
+        font-size: 36px;
+      }
+      .container {
+        margin: 20px;
+        padding: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Musik tetap jalan -->
+  <audio id="laguBukti" src="bukti.mp3" autoplay loop></audio>
+
+  <!-- Kontainer tunggal -->
+  <div id="app" class="container active"></div>
+
+  <script>
+    const app = document.getElementById('app');
+
+    function transition(callback) {
+      app.classList.remove("active");
+      setTimeout(() => {
+        callback();
+        setTimeout(() => app.classList.add("active"), 100);
+      }, 400);
+    }
+
+    function renderHalaman1() {
+      app.innerHTML = `
+        <h1>Halo rifa imut wlee...</h1>
+        <p>Maaf ya kalau ini alay😅<br>Rafly mau nunjukin sesuatu yang rafly buat khusus buat rifa cantik...</p>
+        <button class="next" onclick="transition(renderHalaman2)">Buka</button>
+      `;
+    }
+
+    function renderHalaman2() {
+      app.innerHTML = `
+        <h1>Jujur aja</h1>
+        <p>Baru sekitar seminggu kita kenal, tapi rafly ngerasa ada sesuatu yang beda dari rifa.</p>
+        <p>Rafly ngerasa bahagia banget dan seneng banget bisa kenal rifa</p>
+        <p>Dan rasanya pengen cepet-cepet lebih deket lagi sama rifa.</p>
+        <p>Meskipun belum lama, rafly yakin sama perasaan rafly sendiri walaupun kita belum saling mengenal lebih jauh.</p>
+        <p>Tapi seiring berjalannya waktu nanti bakal bisa saling mengerti dan paham satu sama lain.</p>
+        <p>Rafly serius dan ingin memperjuangkan rifa setulus hati rafly.</p><br>
+        <button class="next" onclick="transition(renderHalaman3)">Lanjut</button>
+      `;
+    }
+
+    function renderHalaman3() {
+      app.innerHTML = `
+        <h1>Jadi...</h1>
+        <p>Dengan ini rafly mau bilang dan nyatain perasaan rafly.</p>
+        <h2>RIFA MAU GAK JADI PACAR RAFLY ?💌</h2>
+        <button class="yes" onclick="transition(jawabIya)">Mau banget</button>
+        <button class="no" onclick="transition(jawabTidak)">Tidak</button>
+      `;
+    }
+
+    function jawabIya() {
+        window.location.href = "https://wa.me/6289509616245?text=Rifa%20menyatakan%20bahwa%20rifa%20MAU%20BANGET%20jadi%20pacar%20rafly!!!%20%20I%20LOVE%20YOU%20Rafly%20";
+        app.innerHTML = `
+        <div class='heart'>&hearts;</div>
+        <p>Yeeey! Makasih udah mau nerima rafly.</p>
+        <p>Rafly janji bakal bahagiain rifa selalu💖</p>
+      `;
+    }
+
+    function jawabTidak() {
+      app.innerHTML = `
+        <p>Gapapa... Tapi, bisa gak kasih rafly satu kesempatan untuk buktiin perasaan ini?</p>
+        <button onclick="tampilkanAlasan()">Lihat🥺</button>
+        <div id="alasan" style="margin-top:20px;"></div>
+      `;
+    }
+
+    function tampilkanAlasan() {
+      document.getElementById("alasan").innerHTML = `
+        <p>Karena rafly yakin, rifa itu orang yang tepat buat rafly.<br>
+        Rafly siap sabar, buktiin perlahan, dan berjuang buat bisa bahagiain rifa.🌷</p>
+      `;
+    }
+
+    // Start dari halaman pertama
+    renderHalaman1();
+  </script>
+</body>
+</html>
